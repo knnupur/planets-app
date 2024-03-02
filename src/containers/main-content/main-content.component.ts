@@ -59,7 +59,7 @@ export class MainContentComponent implements OnInit {
       this.planets.forEach(planet =>{
         planet.imgUrl = "../../planets-app/assets/"+this.generateUniqueRandom(10) +".png";
         //this.getResidentInfo(planet);
-
+//
     
 
     });
