@@ -1,0 +1,83 @@
+
+
+<h1 style="position: relative;
+margin-left: 45%;">Planets</h1>
+  
+    <div class="my-container-wrap">
+
+        
+
+  <div  class="card" [ngClass]="{'active':active === i, 'overlay' : active !== i && active != undefined}" *ngFor="let item of planets; index as i">
+    <div class="card-image">
+        <img src={{item.imgUrl}}>
+      <h1>{{item.name}}</h1>
+
+      <p><span class="first">  Climate : {{item.climate| titlecase}}</span></p>
+      <!--p><span class="second">  Population : {{Number.isInteger(item.population)?(item.population|number):item.population}}</span></p-->
+      <p><span class="second">  Population : {{item.population |titlecase}}</span></p>
+      <p><span class="third">  Terrain : {{item.terrain| titlecase}}</span></p>
+    </div>
+    <div class="card-body">
+      <div class="controls" >
+        <a data-action="drawer" href="#" (click)="setReset(i,item)">
+          <i class="ion-android-arrow-up up" ></i>
+          <i class="ion-android-arrow-down down" ></i>
+          
+        </a>
+       
+      </div>
+     
+      <h1>Residents</h1>
+
+      
+
+      <div class="table-responsive">
+
+        <!-- <ng-template #noData >
+            Uh-Oh Looks like no resident data is available for this planet
+          </ng-template> -->
+
+ 
+      <table mat-table mat-table  [dataSource]="dataSource"  >
+       
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef >Name
+          </th>
+          <td mat-cell *matCellDef="let element" > {{element.name}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="height">
+          <th mat-header-cell *matHeaderCellDef > Height
+          </th>
+          <td mat-cell *matCellDef="let element" > {{element.height}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="mass">
+          <th mat-header-cell *matHeaderCellDef >Mass
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.mass}} </td>
+        </ng-container>
+        <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef >Gender
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.gender| titlecase}} </td>
+          </ng-container>
+
+        
+      
+       
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" style="cursor: pointer;">
+        </tr>
+      </table>
+    </div>
+   
+    </div>
+  </div>
+ 
+ 
+  </div>
+
+  <mat-paginator showFirstLastButtons="true" #paginator (page)="pageChanged($event)"
+  [length]="pageObj.totalElements" [pageSize]="pageObj.size"></mat-paginator>
+  
